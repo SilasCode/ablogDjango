@@ -23,7 +23,7 @@ def LikeView(request, pk):
 class HomeView(ListView):
 	model = Post
 	template_name = 'home.html'
-	ordering = ['-post_date']
+	ordering = ['post_date']
 
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
@@ -64,7 +64,9 @@ class ArticleDetailView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
-		pull_related_post = Post.objects.all()[:3]
+		# Retrieve the current article using self.object
+		article = self.object
+		pull_related_post = Post.objects.filter(category=article.category).exclude(pk=article.id)[:3]
 		context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
 		
 
@@ -76,6 +78,7 @@ class ArticleDetailView(DetailView):
 			liked = True
 
 		context["cat_menu"] = cat_menu
+		context["article"] = article
 		context["pull_related_post"] = pull_related_post
 		context["total_likes"] = total_likes
 		context["liked"] = liked
@@ -143,3 +146,12 @@ class DeletePostView(DeleteView):
 		context = super(DeletePostView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		return context
+
+
+def search(request):
+	if request.method== "POST":
+		search = request.POST['search']
+		searched = Post.objects.filter(body__contains = search)
+		return render(request, 'search.html', {'search':search, 'searched':searched})
+	else:
+		return render(request, 'search.html', {})

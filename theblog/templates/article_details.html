@@ -20,7 +20,7 @@
 	<div class="col-1">
       
   </div>
-	<div class="col-8">
+	<div class="col">
 		{% if post.video_file %}
 	    <video width="640" height="360" controls>
 	      <source src="{{ post.video_file.url }}" type="video/mp4">
@@ -33,8 +33,9 @@
 	  {% endif %}
 	</div>
 </div>
+
 <div class="row">
-	<div class="col-1">
+	<div class="col-2">
       
   </div>
 	<div class="col-8">
@@ -49,6 +50,7 @@
 <div class="row">
   <div class="col-2"></div>
   <div class="col-6">
+  	<br/>
   	BY: <span class="text-danger">{{post.author.first_name}} {{post.author.last_name}}</span>
   	<small class="text-muted">
 		{{ post.post_date }}
@@ -68,8 +70,8 @@
 <br/>
 
 <div class="row">
-  <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-1"></div>
+  <div class="col-9">
   	<blockquote class="blockquote">
   		<p>{{post.body|safe}}</p><br/>
   	<footer class="blockquote-footer">From www.mediuminsights.com</footer>
@@ -81,7 +83,7 @@
 <hr>
 
 <div class="row">
-  <div class="col-2">
+  <div class="col-7">
   	<form action="{% url 'like_post' post.pk %}" method="POST">
 			{% csrf_token %}
 			{% if user.is_authenticated %}
@@ -98,10 +100,10 @@
 			
 		</form>
   </div>
-  <div class="col-7">
+  <div class="col-2">
   	
 	</div>
-  <div class="col-3">
+  <div class="col">
   	<span>
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-twitter"></a>
