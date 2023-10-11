@@ -23,23 +23,25 @@ def LikeView(request, pk):
 class HomeView(ListView):
 	model = Post
 	template_name = 'home.html'
-	ordering = ['post_date']
+	ordering = ['-post_date']
 
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
 		cat_menu2 = Category.objects.all()[:6]
 		slide_post = Post.objects.all()[:6]
-		pull_three_post = Post.objects.all()[:6]
-		single_posts = Post.objects.filter(category= 'World Topic').all()[3:3]
-		single_posts2 = Post.objects.filter(category= 'Sport').all()[:3]
-		single_posts3 = Post.objects.filter(category= 'Africa News').all()[:3]
-		single_posts4 = Post.objects.filter(category= 'Religion').all()[:3]
-		single_posts5 = Post.objects.filter(category= 'Politics').all()[:3]
-		single_posts6 = Post.objects.filter(category= 'Tv Shows').all()[:3]
+		pull_three_post = Post.objects.all().order_by('-post_date')[:6]
+		highlighted_post = Post.objects.filter(post_highlighted=True)[:1]
+		single_posts = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[:3]
+		single_posts2 = Post.objects.filter(category= 'Sport').all().order_by('-post_date')[:3]
+		single_posts3 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[:3]
+		single_posts4 = Post.objects.filter(category= 'Religion').all().order_by('-post_date')[:3]
+		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[:3]
+		single_posts6 = Post.objects.filter(category= 'Tv Shows').all().order_by('-post_date')[:3]
 		context = super(HomeView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		context["cat_menu2"] = cat_menu2
 		context["pull_three_post"] = pull_three_post
+		context["highlighted_post"] = highlighted_post
 		context["slide_post"] = slide_post
 		context["single_posts"] = single_posts
 		context["single_posts2"] = single_posts2
