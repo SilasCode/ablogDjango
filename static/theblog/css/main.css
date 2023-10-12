@@ -202,7 +202,7 @@ section {
   .navbar a:focus {
     align-items: center;
     justify-content: space-between;
-    padding: 5px 0 5px 30px;
+    padding: 5px 0 5px 30x;
     font-family: var(--font-default);
     font-size: 16px;
     font-weight: 500;
