@@ -29,14 +29,31 @@ class HomeView(ListView):
 		cat_menu = Category.objects.all()
 		cat_menu2 = Category.objects.all()[:6]
 		slide_post = Post.objects.all()[:6]
-		pull_three_post = Post.objects.all().order_by('-post_date')[:6]
-		highlighted_post = Post.objects.filter(post_highlighted=True)[:1]
-		single_posts = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[:3]
-		single_posts2 = Post.objects.filter(category= 'Sport').all().order_by('-post_date')[:3]
+		pull_three_post = Post.objects.filter(post_highlighted=True).all().order_by('-post_date')[:1]
+		highlighted_post = Post.objects.filter(post_highlighted=True)[:2]
+		single_posts = Post.objects.all().order_by('-post_date')[:3]
+		single_posts2 = Post.objects.all().order_by('-post_date')[2:3]
 		single_posts3 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[:3]
-		single_posts4 = Post.objects.filter(category= 'Religion').all().order_by('-post_date')[:3]
-		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[:3]
+		single_posts4 = Post.objects.all().order_by('-post_date')[6:6]
+		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[:1]
+		single_posts7 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[1:2]
 		single_posts6 = Post.objects.filter(category= 'Tv Shows').all().order_by('-post_date')[:3]
+		single_posts8 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[3:4]
+		single_posts9 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[6:4]
+		single_posts10 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[9:4]
+
+		single_posts11 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[:1]
+		single_posts12 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[1:2]
+		single_posts13= Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[3:4]
+		single_posts14 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[6:4]
+		single_posts15 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[9:4]
+
+		single_posts16 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[:1]
+		single_posts17 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[1:3]
+		single_posts18= Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[4:4]
+		single_posts19 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[6:4]
+		single_posts20 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[9:4]
+		
 		context = super(HomeView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		context["cat_menu2"] = cat_menu2
@@ -48,7 +65,23 @@ class HomeView(ListView):
 		context["single_posts3"] = single_posts3
 		context["single_posts4"] = single_posts4
 		context["single_posts5"] = single_posts5
+		context["single_posts7"] = single_posts7
 		context["single_posts6"] = single_posts6
+		context["single_posts8"] = single_posts8
+		context["single_posts9"] = single_posts9
+		context["single_posts10"] = single_posts10
+
+		context["single_posts11"] = single_posts11
+		context["single_posts12"] = single_posts12
+		context["single_posts13"] = single_posts13
+		context["single_posts14"] = single_posts14
+		context["single_posts15"] = single_posts15
+
+		context["single_posts16"] = single_posts16
+		context["single_posts17"] = single_posts17
+		context["single_posts18"] = single_posts18
+		context["single_posts19"] = single_posts19
+		context["single_posts20"] = single_posts20
 		return context
 
 def CategoryListView(request):
