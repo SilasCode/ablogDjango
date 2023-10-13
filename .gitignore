@@ -1,5 +1,2 @@
 # Ignore database files
 db.sqlite3
-
-# Ignore log files
-/logs/
