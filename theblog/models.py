@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
 	name = models.CharField(max_length=255)
+	sub_cat = models.CharField(max_length=255)
 
 	def __str__(self):
 		return self.name

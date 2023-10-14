@@ -85,18 +85,21 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
  #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
+        'NAME': 'dbs9tq0uichqao',
+        'USER': 'lsvbancaqkbjpu',
+        'PASSWORD': '87728b753808c648c22b3e91ddae107ef72c417c94ff1cd109f356e57f97400f',
+        'HOST': 'ec2-44-213-228-107.compute-1.amazonaws.com',  # Use 'localhost' for a local database.
+        'PORT': '5432',  # Use the default port for your database.
     }
 }
 
-
 # Parse the database configuration from the DATABASE_URL environment variable
-db_from_virt = dj_database_url.config(conn_max_age=600)
+db_from_env = dj_database_url.config(conn_max_age=600)
 
 # Update the default database configuration
-DATABASES['default'].update(db_from_virt)
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
