@@ -94,10 +94,10 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'de2u3ccqdkaq3j',  # This should be a string, not a Path object
-        'USER': 'ysymtusqilhean',
-        'PASSWORD': 'c157ce1dc851f9fa14fcb5082f1d771517ff2e66989c3f23753cd31eb89e5194',
-        'HOST': 'ec2-44-214-132-149.compute-1.amazonaws.com',  # Change this to your PostgreSQL server's host if needed
+        'NAME': 'dbs9tq0uichqao',  # This should be a string, not a Path object
+        'USER': 'lsvbancaqkbjpu',
+        'PASSWORD': '87728b753808c648c22b3e91ddae107ef72c417c94ff1cd109f356e57f97400f',
+        'HOST': 'ec2-44-213-228-107.compute-1.amazonaws.com',  # Change this to your PostgreSQL server's host if needed
         'PORT': '5432',  # Use the appropriate port if your PostgreSQL is running on a non-default port
     }
 }
