@@ -28,19 +28,21 @@ class HomeView(ListView):
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
 		cat_menu2 = Category.objects.all()[:6]
-		slide_post = Post.objects.all()[:6]
-		pull_three_post = Post.objects.filter(post_highlighted=True).all().order_by('-post_date')[:1]
+		slide_post = Post.objects.all()[:3]
 		highlighted_post = Post.objects.filter(post_highlighted=True)[:1]
+
+		pull_three_post = Post.objects.filter(post_highlighted=True).all().order_by('-post_date')[0:1]
+		single_posts6 = Post.objects.filter(category= 'Tv Shows').all().order_by('-post_date')[:3]
+
 		single_posts = Post.objects.all().order_by('-post_date')[0:3]
 		single_posts2 = Post.objects.all().order_by('-post_date')[2:3]
-		single_posts3 = Post.objects.all().order_by('-post_date')[4:3]
-		single_posts4 = Post.objects.all().order_by('-post_date')[5:6]
+		single_posts3 = Post.objects.all().order_by('-post_date')[3:3]
+		single_posts4 = Post.objects.all().order_by('-post_date')[4:6]
 		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[0:1]
 		single_posts7 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[1:2]
-		single_posts6 = Post.objects.filter(category= 'Tv Shows').all().order_by('-post_date')[:3]
 		single_posts8 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[2:4]
-		single_posts9 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[6:4]
-		single_posts10 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[9:4]
+		single_posts9 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[3:4]
+		single_posts10 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[4:4]
 
 		single_posts11 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[0:1]
 		single_posts12 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[1:2]
