@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
  #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql.psycopg2',  # Use the appropriate database engine.
+        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
         'NAME': 'dbs9tq0uichqao',
         'USER': 'lsvbancaqkbjpu',
         'PASSWORD': '87728b753808c648c22b3e91ddae107ef72c417c94ff1cd109f356e57f97400f',
