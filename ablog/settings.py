@@ -91,8 +91,12 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+
+# Parse the database configuration from the DATABASE_URL environment variable
+db_from_virt = dj_database_url.config(conn_max_age=600)
+
+# Update the default database configuration
+DATABASES['default'].update(db_from_virt)
 
 
 # Password validation
