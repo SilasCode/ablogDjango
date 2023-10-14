@@ -83,24 +83,24 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 #DATABASES = {
     #'default': {
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'de2u3ccqdkaq3j',  # This should be a string, not a Path object
-        #'USER': 'ysymtusqilhean',
-        #'PASSWORD': 'c157ce1dc851f9fa14fcb5082f1d771517ff2e66989c3f23753cd31eb89e5194',
-        #'HOST': 'ec2-44-214-132-149.compute-1.amazonaws.com',  # Change this to your PostgreSQL server's host if needed
-        #'PORT': '5432',  # Use the appropriate port if your PostgreSQL is running on a non-default port
+        
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
     #}
 #}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'de2u3ccqdkaq3j',  # This should be a string, not a Path object
+        'USER': 'ysymtusqilhean',
+        'PASSWORD': 'c157ce1dc851f9fa14fcb5082f1d771517ff2e66989c3f23753cd31eb89e5194',
+        'HOST': 'ec2-44-214-132-149.compute-1.amazonaws.com',  # Change this to your PostgreSQL server's host if needed
+        'PORT': '5432',  # Use the appropriate port if your PostgreSQL is running on a non-default port
+    }
+}
 
 
 # Password validation
