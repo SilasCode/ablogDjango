@@ -30,9 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*tlq#x*j*2(53p%vpn3xhx)48h%&ch=g+$ll)=z&glbdn3n+(q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['insightful247.com']
+#ALLOWED_HOSTS = ['insightful247.com']
+# Additional settings for using Heroku
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['simblog-ceea4a316708.herokuapp.com']
 
 
 # Application definition
@@ -83,18 +86,16 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 # Database
  #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
-        'NAME': 'dbs9tq0uichqao',
-        'USER': 'lsvbancaqkbjpu',
-        'PASSWORD': '87728b753808c648c22b3e91ddae107ef72c417c94ff1cd109f356e57f97400f',
-        'HOST': 'ec2-44-213-228-107.compute-1.amazonaws.com',  # Use 'localhost' for a local database.
-        'PORT': '5432',  # Use the default port for your database.
-    }
+# Ensure secure connections (SSL) for the database
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+DATABASES['default']['OPTIONS'] = {
+    'sslmode': 'require',
 }
 
-
+# Parse the DATABASE_URL environment variable provided by Heroku
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
 
 
 # Password validation
@@ -132,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
