@@ -87,21 +87,17 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # Database
  #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # Ensure secure connections (SSL) for the database
+
+# Parse the DATABASE_URL environment variable provided by Heroku
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
+
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 DATABASES['default']['OPTIONS'] = {
     'sslmode': 'require',
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
-        'NAME': 'dbs9tq0uichqao',
-        'USER': 'lsvbancaqkbjpu',
-        'PASSWORD': '87728b753808c648c22b3e91ddae107ef72c417c94ff1cd109f356e57f97400f',
-        'HOST': 'ec2-44-213-228-107.compute-1.amazonaws.com',  # Use 'localhost' for a local database.
-        'PORT': '5432',  # Use the default port for your database.
-    }
-}
 
 
 # Password validation
