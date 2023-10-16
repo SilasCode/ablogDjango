@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-import psycopg2
 from decouple import config
 
 from pathlib import Path
@@ -31,12 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*tlq#x*j*2(53p%vpn3xhx)48h%&ch=g+$ll)=z&glbdn3n+(q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = ['insightful247.com']
-# Additional settings for using Heroku
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['simblog-ceea4a316708.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,21 +82,14 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 
 # Database
- #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-# Ensure secure connections (SSL) for the database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Parse the DATABASE_URL environment variable provided by Heroku
-#DATABASE_URL = os.environ['DATABASE_URL']
-
-# Configure DATABASES using dj-database-url
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-
-# Ensure that SSL is required for the connection
-DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
 
 # Password validation
@@ -138,7 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
