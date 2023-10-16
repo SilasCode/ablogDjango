@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-*tlq#x*j*2(53p%vpn3xhx)48h%&ch=g+$ll)=z&glbdn3n+(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['simblog-ceea4a316708.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
