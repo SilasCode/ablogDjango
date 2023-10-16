@@ -90,16 +90,11 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # Ensure secure connections (SSL) for the database
 
 # Parse the DATABASE_URL environment variable provided by Heroku
-DATABASE_URL = os.environ['DATABASE_URL']
+#DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
-DATABASES['default']['OPTIONS'] = {
-    'sslmode': 'require',
-}
 
 
 
