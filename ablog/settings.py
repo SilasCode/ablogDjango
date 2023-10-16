@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 import django_heroku
-import dj_database_url
+
 from decouple import config
 
 from pathlib import Path
@@ -91,7 +91,9 @@ DATABASES = {
     }
 }
 
-
+import dj_database_url
+dj_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
