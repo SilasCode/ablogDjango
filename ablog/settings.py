@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-*tlq#x*j*2(53p%vpn3xhx)48h%&ch=g+$ll)=z&glbdn3n+(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['simblog-ceea4a316708.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,14 +86,11 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
-        'NAME': 'd2p39cqnb9orr9',
-        'USER': 'hbuokahjissfdx',
-        'PASSWORD': 'f0de25cd248d6db713708d467d97f74290f43547508c36ceafd8b2e0786922a1',
-        'HOST': 'ec2-44-215-1-253.compute-1.amazonaws.com',  # Use 'localhost' for a local database.
-        'PORT': '5432',  # Use the default port for your database.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -129,8 +126,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-#TO BE REMOVE STATIC_ROOT 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
@@ -151,7 +146,7 @@ LOGOUT_REDIRECT_URL = 'home' #redirect after logout
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+django_heroku.settings(locals())

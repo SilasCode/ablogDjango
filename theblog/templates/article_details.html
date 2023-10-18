@@ -6,21 +6,23 @@
 {% endblock %}
 
 {% block content %}
-
+<hr/>
 <div class="row">
     <div class="col-2">
       <h6><a class="text-muted" href="{% url 'category' post.category %}">{{ post.category }}</a></h6>
     </div>
     <div class="col-9">
-      <h4 class="">{{ post.title }}</h4>
+      
     </div>
 </div>
+<hr/><br>
+<h3 class="text-capitalize text-center"><b>{{ post.title }}</b></h3>
 
 <div class="row">
 	<div class="col-1">
       
   </div>
-	<div class="col-8">
+	<div class="col">
 		{% if post.video_file %}
 	    <video width="640" height="360" controls>
 	      <source src="{{ post.video_file.url }}" type="video/mp4">
@@ -29,12 +31,16 @@
 
 	  {% if post.header_image %}
 	    <br/><br/>
-	    <img src="{{ post.header_image.url }}" class="img-fluid">
+	    <img src="{{ post.header_image.url }}" class="img-fluid rounded">
 	  {% endif %}
 	</div>
-</div>
-<div class="row">
 	<div class="col-1">
+      
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-2">
       
   </div>
 	<div class="col-8">
@@ -49,7 +55,8 @@
 <div class="row">
   <div class="col-2"></div>
   <div class="col-6">
-  	BY: <span class="text-danger">{{post.author.first_name}} {{post.author.last_name}}</span>
+  	<br/>
+  	BY: <span class="text-muted"><b>{{post.author.first_name}} {{post.author.last_name}}</b></span>
   	<small class="text-muted">
 		{{ post.post_date }}
 		</small>
@@ -68,11 +75,11 @@
 <br/>
 
 <div class="row">
-  <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-1"></div>
+  <div class="col-10">
   	<blockquote class="blockquote">
-  		<p>{{post.body|safe}}</p><br/>
-  	<footer class="blockquote-footer">From www.mediuminsights.com</footer>
+  		<p class="lead">{{post.body|safe}}</p><br/>
+  	<footer class="blockquote-footer">From www.insightful247.com</footer>
   	</blockquote>
 	</div>
   <div class="col"></div>
@@ -81,7 +88,7 @@
 <hr>
 
 <div class="row">
-  <div class="col-2">
+  <div class="col-7">
   	<form action="{% url 'like_post' post.pk %}" method="POST">
 			{% csrf_token %}
 			{% if user.is_authenticated %}
@@ -98,10 +105,10 @@
 			
 		</form>
   </div>
-  <div class="col-7">
+  <div class="col-2">
   	
 	</div>
-  <div class="col-3">
+  <div class="col">
   	<span>
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-twitter"></a>
