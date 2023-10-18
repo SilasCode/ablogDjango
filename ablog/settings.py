@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import django_heroku
 import dj_database_url
+import psycopg2
 from decouple import config
 
 from pathlib import Path
@@ -83,15 +84,7 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# You can define your 'default' database configuration like this
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+DATABASES = {'default': dj_database_url.config(default=os.environ['postgres://iixotpktagobbp:4aa4336e7ee543a76a6bf4ba3a3ae06da316e501d988475931e1a1c17f230662@ec2-54-208-11-146.compute-1.amazonaws.com:5432/d3ovd1s0sub4s2'])}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -5,7 +5,7 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 
 class Category(models.Model):
-	name = models.CharField(max_length=255)
+	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return self.name
