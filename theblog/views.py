@@ -29,59 +29,24 @@ class HomeView(ListView):
 		cat_menu = Category.objects.all()
 		cat_menu2 = Category.objects.all()[:6]
 		slide_post = Post.objects.all()[:6]
-		pull_three_post = Post.objects.filter(post_highlighted=True).all().order_by('-post_date')[:1]
-		highlighted_post = Post.objects.filter(post_highlighted=True)[:1]
-		single_posts = Post.objects.all().order_by('-post_date')[0:3]
-		single_posts2 = Post.objects.all().order_by('-post_date')[2:3]
-		single_posts3 = Post.objects.all().order_by('-post_date')[4:3]
-		single_posts4 = Post.objects.all().order_by('-post_date')[5:6]
-		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[0:1]
-		single_posts7 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[1:2]
-		single_posts6 = Post.objects.filter(category= 'Tv Shows').all().order_by('-post_date')[:3]
-		single_posts8 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[2:4]
-		single_posts9 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[6:4]
-		single_posts10 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[9:4]
-
-		single_posts11 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[0:1]
-		single_posts12 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[1:2]
-		single_posts13= Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[2:4]
-		single_posts14 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[6:4]
-		single_posts15 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[9:4]
-
-		single_posts16 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[0:1]
-		single_posts17 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[1:3]
-		single_posts18= Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[3:4]
-		single_posts19 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[6:4]
-		single_posts20 = Post.objects.filter(category= 'World Topic').all().order_by('-post_date')[10:4]
-		
+		pull_three_post = Post.objects.all()[:6]
+		single_posts = Post.objects.filter(category= 'World Topic').all()[3:3]
+		single_posts2 = Post.objects.filter(category= 'Sport').all()[:3]
+		single_posts3 = Post.objects.filter(category= 'Africa News').all()[:3]
+		single_posts4 = Post.objects.filter(category= 'Religion').all()[:3]
+		single_posts5 = Post.objects.filter(category= 'Politics').all()[:3]
+		single_posts6 = Post.objects.filter(category= 'Tv Shows').all()[:3]
 		context = super(HomeView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		context["cat_menu2"] = cat_menu2
 		context["pull_three_post"] = pull_three_post
-		context["highlighted_post"] = highlighted_post
 		context["slide_post"] = slide_post
 		context["single_posts"] = single_posts
 		context["single_posts2"] = single_posts2
 		context["single_posts3"] = single_posts3
 		context["single_posts4"] = single_posts4
 		context["single_posts5"] = single_posts5
-		context["single_posts7"] = single_posts7
 		context["single_posts6"] = single_posts6
-		context["single_posts8"] = single_posts8
-		context["single_posts9"] = single_posts9
-		context["single_posts10"] = single_posts10
-
-		context["single_posts11"] = single_posts11
-		context["single_posts12"] = single_posts12
-		context["single_posts13"] = single_posts13
-		context["single_posts14"] = single_posts14
-		context["single_posts15"] = single_posts15
-
-		context["single_posts16"] = single_posts16
-		context["single_posts17"] = single_posts17
-		context["single_posts18"] = single_posts18
-		context["single_posts19"] = single_posts19
-		context["single_posts20"] = single_posts20
 		return context
 
 def CategoryListView(request):
@@ -99,9 +64,7 @@ class ArticleDetailView(DetailView):
 
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
-		# Retrieve the current article using self.object
-		article = self.object
-		pull_related_post = Post.objects.filter(category=article.category).exclude(pk=article.id)[:3]
+		pull_related_post = Post.objects.all()[:3]
 		context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
 		
 
@@ -113,7 +76,6 @@ class ArticleDetailView(DetailView):
 			liked = True
 
 		context["cat_menu"] = cat_menu
-		context["article"] = article
 		context["pull_related_post"] = pull_related_post
 		context["total_likes"] = total_likes
 		context["liked"] = liked
@@ -181,12 +143,3 @@ class DeletePostView(DeleteView):
 		context = super(DeletePostView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		return context
-
-
-def search(request):
-	if request.method== "POST":
-		search = request.POST['search']
-		searched = Post.objects.filter(body__contains = search)
-		return render(request, 'search.html', {'search':search, 'searched':searched})
-	else:
-		return render(request, 'search.html', {})
