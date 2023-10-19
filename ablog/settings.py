@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-import psycopg2
 from decouple import config
 
 from pathlib import Path
@@ -33,7 +32,7 @@ SECRET_KEY = 'django-insecure-*tlq#x*j*2(53p%vpn3xhx)48h%&ch=g+$ll)=z&glbdn3n+(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['simblog-ceea4a316708.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,12 +85,12 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('postgres://iixotpktagobbp:4aa4336e7ee543a76a6bf4ba3a3ae06da316e501d988475931e1a1c17f230662@ec2-54-208-11-146.compute-1.amazonaws.com:5432/d3ovd1s0sub4s2'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
