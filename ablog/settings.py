@@ -84,13 +84,7 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+DATABASES = {'default': dj_database_url.config(default=os.environ['postgres://uzzcbeiuvyhmoh:231523b12dfb2fe360415bc3d0449dc026a024b3fd78df734525f606c28f3adf@ec2-54-208-11-146.compute-1.amazonaws.com:5432/d5a1irtf0oao0q'])}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
