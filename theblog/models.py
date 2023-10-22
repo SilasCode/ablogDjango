@@ -4,14 +4,6 @@ from django.urls import reverse
 from datetime import datetime, date 
 from ckeditor.fields import RichTextField
 
-class Category(models.Model):
-	name = models.CharField(max_length=100)
-
-	def __str__(self):
-		return self.name
-
-	def get_absolute_url(self):
-		return reverse('home')
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -62,3 +54,12 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return '%s - %s' % (self.post.title, self.name)
+
+class Category(models.Model):
+	name = models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.name
+
+	def get_absolute_url(self):
+		return reverse('home')
