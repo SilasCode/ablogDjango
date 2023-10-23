@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import django_heroku
 import dj_database_url
+import psycopg2
 from decouple import config
 
 from pathlib import Path
@@ -86,11 +87,11 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('postgres://ucimtdoxdmoede:2c419e26c47d5c0b25cfae64f6408dded9d9e3c92e9e7a3091708b1a63ea2ad1@ec2-54-86-180-157.compute-1.amazonaws.com:5432/dbve2u7da1bfu0'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
