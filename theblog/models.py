@@ -5,7 +5,7 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 
 class Category(models.Model):
-	name = models.CharField(max_length=255)
+	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return self.name
@@ -22,6 +22,7 @@ class Profile(models.Model):
 	twitter_url = models.CharField(max_length=255, null=True, blank=True)
 	instagram_url = models.CharField(max_length=255, null=True, blank=True)
 	pinterest_url = models.CharField(max_length=255, null=True, blank=True)
+	youtube_url = models.CharField(max_length=255, null=True, blank=True)
 
 	def __str__(self):
 		return str(self.user)

@@ -3,87 +3,472 @@
 
 {% block content %}
 
-<main class="">
-  <div class="shadow p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-    	{% for post in highlighted_post %}
-    	<a href="{% url 'article-detail' post.pk %}" class="text-white fw-bold" style="text-decoration: none">
-      <h1 class="display-4 fst-italic text-break">{{ post.title }}</h1>
-    	</a>
-      <p class="lead my-3">{{ post.snippet }}</p>
-      <p class="lead mb-0"><a href="{% url 'article-detail' post.pk %}" class="text-white fw-bold">Continue reading...</a></p>
-      {% endfor %}
-    </div>
-  </div>
-</main>
+<!-- ======= Culture Category Section ======= -->
+    <section class="category-section">
+      <div class="container" data-aos="fade-up">
 
-<div class="row">
-	
-	{% for post in pull_three_post %}
-    <div class="col-sm-4">
-      	
-	      	<a href="{% url 'article-detail' post.pk %}" class="h5 mb-0" style="text-decoration: none">
-						{{ post.title }}
-					</a>
-				<br/><br/>
-      {% if post.header_image %}
-	      <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      {% endif %}
-      <p>
-      	<a href="{% url 'show_profile_page' post.author.profile.id %}">{{ post.author.first_name }}
-		{{ post.author.last_name }}</a> - {{ post.post_date }} - <a href="{% url 'category' post.category|slugify %}"><span class="badge bg-info">{{ post.category }}</span></a>
-		<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					<a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a>
-				{% endif %}
-			{% endif %}  
-		</small>
+        <div class="section-header d-flex justify-content-between align-items-center mb-5">
+          <h2>What's happening</h2>
+          
+        </div>
 
-		<br />
-		{{ post.snippet }}
-	
-      </p>
-      <hr class="d-sm-none">
-    </div>
-    {% endfor %}
+        <div class="row">
+          <div class="col-md-9">
+          	{% for post in single_post %}
+            <div class="d-lg-flex post-entry-2">
+              <a href="{% url 'article-detail' post.pk %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+              	{% if post.header_image %}
+                <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+                {% endif %}
+              </a>
+              <div>
+                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+                <h3><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h3>
+                <p>{{ post.snippet }}</p>
+                <div class="d-flex align-items-center author">
+                  <div class="photo">
+                  	{% if post.author.profile.profile_pic %}
+                  	<img src="{{ post.author.profile.profile_pic.url }}" alt="" class="img-fluid">
+                  	{% else %}
+			    					<img src="{% static 'theblog/images/mypro.jpg' %}" class="img-fluid" alt="default profile image">
+                  	{% endif %}
+                  </div>
+                  <div class="name">
+                    <h3 class="m-0 p-0">
+                    	<a href="{% url 'show_profile_page' post.author.profile.id %}">
+                    		{{ post.author.first_name }}
+												{{ post.author.last_name }}
+											</a>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
 
- </div><br/><br/>
+            <div class="row">
+            	
+            		
+	            <div class="col-lg-4">
+	            	{% if two_posts %}
+		            	{% for post in two_posts %}
+
+		              <div class="post-entry-1 border-bottom">
+		              	{% if post.header_image %}
+		                <a href="{% url 'article-detail' post.pk %}"><img src="{{ post.header_image.url }}" alt="" class="img-fluid"></a>
+		                {% endif %}
+		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+		                <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+		                <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+		              </div>
+
+		              {% endfor %}
+		            {% endif %}
+
+		            {% if one_posts2 %}
+									{% for post in one_posts2 %}
+		              <div class="post-entry-1">
+		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+		                <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+		                <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+		              </div>
+		            	{% endfor %}
+		            {% endif %}
+
+	            </div>
+              	
+              
+              <div class="col-lg-8">
+              	{% if two_posts1 %}
+									{% for post in two_posts1 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			                <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			                {% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                  <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+	                  <p class="mb-4 d-block">{{ post.snippet }}</p>
+	                </div>
+                	{% endfor %}
+           		 {% endif %}
+              </div>
+	              
+            </div>
+          </div>
+
+          <div class="col-md-3">
+          	{% if five_posts %}
+							{% for post in five_posts %}
+	            <div class="post-entry-1 border-bottom">
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+            
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Culture Category Section -->
+
+    <!-- ======= Single Category Section ======= -->
+    <section class="category-section">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header d-flex justify-content-between align-items-center mb-5">
+        	{% if single_posts5 %}
+          		{% for post in single_posts5 %}
+          <h2>{{ post.category }}</h2>
+          		{% endfor %}
+          {% endif %}
+          <div>
+          	{% if single_posts5 %}
+          		{% for post in single_posts5 %}
+          			<a href="{% url 'category' post.category %}" class="more">See All {{ post.category }}</a>
+          		{% endfor %}
+          	{% endif %}
+          </div>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-4">
+          	{% if single_posts5 %}
+							{% for post in single_posts5 %}
+	            <div class="post-entry-1 lg">
+	              <a href="{% url 'article-detail' post.pk %}">
+	              	{% if post.header_image %}
+			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            {% endif %}
+	              </a>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <p class="mb-4 d-block">{{ post.snippet }}</p>
+
+	              <div class="d-flex align-items-center author">
+	                <div class="photo"><img src="assets/img/person-7.jpg" alt="" class="img-fluid"></div>
+	                <div class="name">
+	                  <h3 class="m-0 p-0">{{ post.author.first_name }}</h3>
+	                </div>
+	              </div>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+            {% if single_posts7 %}
+							{% for post in single_posts7 %}
+	            <div class="post-entry-1 border-bottom">
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row g-5">
+
+              <div class="col-lg-4 border-start custom-border">
+              	{% if single_posts8 %}
+									{% for post in single_posts8 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+              </div>
+
+              <div class="col-lg-4 border-start custom-border">
+
+                {% if single_posts9 %}
+									{% for post in single_posts9 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+
+              <div class="col-lg-4">
+
+                {% if single_posts10 %}
+									{% for post in single_posts10 %}
+	                <div class="post-entry-1 border-bottom">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+            </div>
+
+          </div>
+
+        </div> <!-- End .row -->
+      </div>
+    </section><!-- End single Category Section -->
+    <br/>
+    <!-- ======= Single2 Category Section ======= -->
+    <section class="category-section">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header d-flex justify-content-between align-items-center mb-5">
+        	{% if single_posts11 %}
+          		{% for post in single_posts11 %}
+          <h2>{{ post.category }}</h2>
+          		{% endfor %}
+          {% endif %}
+          <div>
+          	{% if single_posts11 %}
+          		{% for post in single_posts11 %}
+          			<a href="{% url 'category' post.category %}" class="more">See All {{ post.category }}</a>
+          		{% endfor %}
+          	{% endif %}
+          </div>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-4">
+          	{% if single_posts11 %}
+							{% for post in single_posts11 %}
+	            <div class="post-entry-1 lg">
+	              <a href="{% url 'article-detail' post.pk %}">
+	              	{% if post.header_image %}
+			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            {% endif %}
+	              </a>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              
+	              <div class="d-flex align-items-center author">
+	                <div class="photo"><img src="assets/img/person-7.jpg" alt="" class="img-fluid"></div>
+	                <div class="name">
+	                  <h3 class="m-0 p-0">{{ post.author.first_name }}</h3>
+	                </div>
+	              </div>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+            {% if single_posts12 %}
+							{% for post in single_posts12 %}
+	            <div class="post-entry-1 border-bottom">
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row g-5">
+
+              <div class="col-lg-4 border-start custom-border">
+              	{% if single_posts13 %}
+									{% for post in single_posts13 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+              </div>
+
+              <div class="col-lg-4 border-start custom-border">
+
+                {% if single_posts14 %}
+									{% for post in single_posts14 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+
+              <div class="col-lg-4">
+
+                {% if single_posts15 %}
+									{% for post in single_posts10 %}
+	                <div class="post-entry-1 border-bottom">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+            </div>
+
+          </div>
+
+        </div> <!-- End .row -->
+      </div>
+    </section><!-- End single2 Category Section -->
+    <br/>
+    <!-- ======= Single3 Category Section ======= -->
+    <section class="category-section">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header d-flex justify-content-between align-items-center mb-5">
+        	{% if single_posts16 %}
+          		{% for post in single_posts16 %}
+          <h2>{{ post.category }}</h2>
+          		{% endfor %}
+          {% endif %}
+          <div>
+          	{% if single_posts16 %}
+          		{% for post in single_posts16 %}
+          			<a href="{% url 'category' post.category %}" class="more">See All {{ post.category }}</a>
+          		{% endfor %}
+          	{% endif %}
+          </div>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-4">
+          	{% if single_posts16 %}
+							{% for post in single_posts16 %}
+	            <div class="post-entry-1 lg">
+	              <a href="{% url 'article-detail' post.pk %}">
+	              	{% if post.header_image %}
+			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            {% endif %}
+	              </a>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <p class="mb-4 d-block">{{ post.snippet }}</p>
+
+	              <div class="d-flex align-items-center author">
+	                <div class="photo"><img src="assets/img/person-7.jpg" alt="" class="img-fluid"></div>
+	                <div class="name">
+	                  <h3 class="m-0 p-0">{{ post.author.first_name }}</h3>
+	                </div>
+	              </div>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+            {% if single_posts17 %}
+							{% for post in single_posts17 %}
+	            <div class="post-entry-1 border-bottom">
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
+	            </div>
+            	{% endfor %}
+            {% endif %}
+
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row g-5">
+
+              <div class="col-lg-4 border-start custom-border">
+              	{% if single_posts18 %}
+									{% for post in single_posts18 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+              </div>
+
+              <div class="col-lg-4 border-start custom-border">
+
+                {% if single_posts19 %}
+									{% for post in single_posts9 %}
+	                <div class="post-entry-1">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+
+              <div class="col-lg-4">
+
+                {% if single_posts20 %}
+									{% for post in single_posts10 %}
+	                <div class="post-entry-1 border-bottom">
+	                  <a href="{% url 'article-detail' post.pk %}">
+	                  	{% if post.header_image %}
+			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
+			            		{% endif %}
+	                  </a>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
+	                </div>
+                	{% endfor %}
+            		{% endif %}
+
+              </div>
+            </div>
+
+          </div>
+
+        </div> <!-- End .row -->
+      </div>
+    </section><!-- End single3 Category Section -->
 
  <div class="row">
 
     <div class="col-sm-4">
-      
-      <div class="">
-
-      	<div id="demo" class="carousel slide" data-ride="carousel">
-
-				  <!-- The slideshow -->
-				  <div class="carousel-inner">
-				  	{% for post in slide_post %}
-				    <div class="carousel-item{% if forloop.first %} active{% endif %}">
-				      <img class="img-fluid" src="{{ post.header_image.url }}" alt="{{ post.header_image.url }}">
-				    </div>
-				    {% endfor %}
-				  </div>
-
-				  <!-- Left and right controls -->
-				  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-				    <span class="carousel-control-prev-icon"></span>
-				  </a>
-				  <a class="carousel-control-next" href="#demo" data-slide="next">
-				    <span class="carousel-control-next-icon"></span>
-				  </a>
-
-				</div>
-
-
-      </div>
       
       <h3 class="mt-4">CATEGORY</h3>
       
@@ -93,180 +478,21 @@
       		<li class="nav-item">
           		<a class="nav-link card" href="{% url 'category' item|slugify %}">{{ item }}</a>
         	</li>
-    	{% endfor %}
-    	{% endif %}
+    		{% endfor %}
+    		{% endif %}
         
       </ul>
-   
-      <br/><br/>
+ 
       <hr class="d-sm">
-      <h2>Advertise here</h2>
-      <div class="fakeimg">Fake Image</div>
 
     </div>
-
- 	<div class="col-sm-8">
-    {% if single_posts %}
-		{% for post in single_posts %}
-		<a href="{% url 'article-detail' post.pk %}" class="h4" style="text-decoration: none
-	">{{ post.title }}</a><br/><br/>
-	      {% if post.header_image %}
-	      <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      	{% endif %}<br/>
-	      <p><a href="{% url 'category' post.category %}"><span class="badge bg-danger">{{ post.category }}</span></a> By - {{ post.author.first_name }} 
-	      	<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					| <a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a> |
-				{% endif %}
-			{% endif %} 
-			<span>{{ post.post_date }}</span>
-			</small>
-	      </p>
-
-	      <p>{{ post.snippet }}</p>
-
-	      <hr class="d-sm">
-		{% endfor %}
-		
-	{% endif %}
-
-
-	{% if single_posts2 %}
-		{% for post in single_posts2 %}
-		<a href="{% url 'article-detail' post.pk %}" class="h4" style="text-decoration: none
-	">{{ post.title }}</a><br/><br/>
-	      {% if post.header_image %}
-	      <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      	{% endif %}<br/>
-	      <p><a href="{% url 'category' post.category %}"><span class="badge bg-primary">{{ post.category }}</span></a> By - {{ post.author.first_name }} 
-	      	<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					| <a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a> | 
-				{% endif %}
-			{% endif %}
-			<span>{{ post.post_date }}</span>  
-			</small>
-	      </p>
-
-	      <p>{{ post.snippet }}</p>
-	      <hr class="d-sm">
-		{% endfor %}
-	{% endif %}
-
-	{% if single_posts3 %}
-		{% for post in single_posts3 %}
-		<a href="{% url 'article-detail' post.pk %}" class="h4" style="text-decoration: none
-	">{{ post.title }}</a><br/><br/>
-	      {% if post.header_image %}
-	      <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      	{% endif %}<br/>
-	      <p><a href="{% url 'category' post.category %}"><span class="badge bg-primary">{{ post.category }}</span></a> By - {{ post.author.first_name }} 
-	      	<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					| <a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a>|
-				{% endif %}
-			{% endif %} 
-			<span>{{ post.post_date }}</span> 
-			</small>
-	      </p>
-
-	      <p>{{ post.snippet }}</p>
-	      <hr class="d-sm">
-		{% endfor %}
-	{% endif %}
-
-	{% if single_posts4 %}
-		{% for post in single_posts4 %}
-		<a href="{% url 'article-detail' post.pk %}" class="h4" style="text-decoration: none
-	">{{ post.title }}</a><br/><br/>
-	      
-	      {% if post.header_image %}
-	      <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      	{% endif %}<br/>
-	      <p><a href="{% url 'category' post.category %}"><span class="badge bg-primary">{{ post.category }}</span></a> By - {{ post.author.first_name }} 
-	      	<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					| <a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a>|
-				{% endif %}
-			{% endif %}  
-			<span>{{ post.post_date }}</span>
-			</small>
-	      </p>
-
-	      <p>{{ post.snippet }}</p>
-	      <hr class="d-sm">
-		{% endfor %}
-	{% endif %}
-
-	{% if single_posts5 %}
-		{% for post in single_posts5 %}
-		<a href="{% url 'article-detail' post.pk %}" class="h4" style="text-decoration: none
-	">{{ post.title }}</a><br/><br/>
-	      
-
-	      {% if post.video_file %}
-	      <div class="">
-		    <video class="img-fluid" controls>
-		        <source src="{{ post.video_file.url }}" type="video/mp4">
-		    </video>
-
-		    </div>
-		    {% elif post.header_image %}
-		    <div class="">
-      	
-	      	<img src="{{ post.header_image.url }}" class="img-fluid">
-	      
-      	</div>
-      	{% endif %}
-	      <br/>
-	      <p><a href="{% url 'category' post.category %}"><span class="badge bg-primary">{{ post.category }}</span></a> By - {{ post.author.first_name }} 
-	      	<small>
-			{% if user.is_authenticated %}
-				{% if user.id == post.author.id %}
-					| <a href="{% url 'update_post' post.pk %}" data-bs-toggle="tooltip" title="Edit your post" style="text-decoration: none" class="">(Edit)</a>
-					<a href="{% url 'delete_post' post.pk %}" data-bs-toggle="tooltip" title="Delete this post" style="text-decoration: none" class="">(Delete)</a> |
-				{% endif %}
-			{% endif %} 
-			<span>{{ post.post_date }}</span> 
-			</small>
-	      </p>
-
-	      <p>{{ post.snippet }}</p>
-	      <hr class="d-sm">
-		{% endfor %}
-	{% endif %}
-
-	
-	
-
-      
-  </div>
+    <div class="col-lg-8">
+    	<h2>Advertise here</h2>
+      <div class="fakeimg">Fake Image</div>
+    </div>
 
  </div>
+
 <br/><br/>
 <div class="row bg-light">
 	
