@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
+        'NAME': 'd2m7dbg65v0fpt',
+        'USER': 'mgmyxurfmlbcpv',
+        'PASSWORD': '26a32d4a696355ab55b2c5c75aef0030ae6c514c10d7c30251153a7509686a0a',
+        'HOST': 'ec2-52-5-167-89.compute-1.amazonaws.com',  # Use 'localhost' for a local database.
+        'PORT': '5432',  # Use the default port for your database.
     }
 }
 
