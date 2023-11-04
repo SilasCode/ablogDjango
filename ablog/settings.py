@@ -86,12 +86,6 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-# If DATABASE_URL is not set, set a default database URL for development
-if not DATABASE_URL:
-    DATABASE_URL = 'postgres://iflwvumkigifqn:eb0e7c4b6caca87aa9db3ec0de9e6afc4df4357ef63bb85335ace80f3bab4595@localhost:5432/ddmdihbmd1b9o2'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # Use the appropriate database engine.
