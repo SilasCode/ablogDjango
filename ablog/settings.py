@@ -86,7 +86,10 @@ WSGI_APPLICATION = 'ablog.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+<<<<<<< HEAD
 #DATABASE_URL = os.environ['DATABASE_URL']
+=======
+>>>>>>> 4e229a499243ffa9d26460d0f683efaa8f85c72d
 DATABASES = {
     'default': {
         
