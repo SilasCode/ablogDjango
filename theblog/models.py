@@ -6,13 +6,10 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
 	name = models.CharField(max_length=100)
-<<<<<<< HEAD
 
 	class Meta:
 		ordering = ('name',)
 		verbose_name_plural ='Categories'
-=======
->>>>>>> 4e229a499243ffa9d26460d0f683efaa8f85c72d
 
 	def __str__(self):
 		return self.name
@@ -46,7 +43,7 @@ class Post(models.Model):
 	body = RichTextField(blank=True, null=True)
 	#body = models.TextField()
 	post_date = models.DateField(auto_now_add=True)
-	category = models.CharField(max_length=100, default='Uncategorised')
+	category = models.CharField(max_length=255, default='')
 	snippet = models.CharField(max_length=255)
 	likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
 	post_highlighted = models.BooleanField(default=False)
