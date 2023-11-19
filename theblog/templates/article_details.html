@@ -77,10 +77,33 @@
 <div class="row">
   <div class="col-1"></div>
   <div class="col-10">
-  	<blockquote class="blockquote">
-  		<p class="lead">{{post.body|safe}}</p><br/>
-  	<footer class="blockquote-footer">From www.insightful247.com</footer>
-  	</blockquote>
+
+  	<!-- Nav tabs -->
+		<ul class="nav nav-pills">
+		  <li class="nav-item">
+		    <a class="nav-link active" data-bs-toggle="pill" href="#home">English</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" data-bs-toggle="pill" href="#menu1">French</a>
+		  </li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div class="tab-pane container active" id="home">
+		  	<blockquote class="blockquote">
+		  		<p class="lead">{{post.body|safe}}</p><br/>
+		  		<footer class="blockquote-footer">From www.insightful247.com</footer>
+		  	</blockquote>
+		  </div>
+		  <div class="tab-pane container fade" id="menu1">
+		  	<blockquote class="blockquote">
+		  		<p class="lead">{{post.french_body|safe}}</p><br/>
+		  		<footer class="blockquote-footer">From www.insightful247.com</footer>
+		  	</blockquote>
+		  </div>
+		</div>
+
 	</div>
   <div class="col"></div>
 </div>
