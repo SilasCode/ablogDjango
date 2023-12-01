@@ -23,15 +23,15 @@ def LikeView(request, pk):
 class HomeView(ListView):
 	model = Post
 	template_name = 'home.html'
-	ordering = ['-post_date']
+	#ordering = ['-post_date']
 
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()
 		cat_menu2 = Category.objects.all()[:6]
 		#slide_post = Post.objects.all()[:6]
 
-		single_post = Post.objects.filter(post_highlighted=True).all().order_by('-post_date')[:1]
-		two_posts = Post.objects.all().order_by('-post_date')[:2]
+		single_post = Post.objects.all().order_by('-post_date')[:1]
+		two_posts = Post.objects.all().order_by('-post_date')[1:2]
 		one_posts2 = Post.objects.all().order_by('-post_date')[2:3]
 		two_posts1 = Post.objects.all().order_by('-post_date')[3:5]
 		five_posts = Post.objects.all().order_by('-post_date')[5:10]
@@ -83,6 +83,7 @@ class HomeView(ListView):
 		context["single_posts19"] = single_posts19
 		context["single_posts20"] = single_posts20
 		return context
+
 
 def CategoryListView(request):
 	cat_menu_list = Category.objects.all()

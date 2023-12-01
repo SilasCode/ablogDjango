@@ -22,7 +22,7 @@
                 {% endif %}
               </a>
               <div>
-                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }}</span></div>
                 <h3><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h3>
                 <p>{{ post.snippet }}</p>
                 <div class="d-flex align-items-center author">
@@ -57,7 +57,7 @@
 		              	{% if post.header_image %}
 		                <a href="{% url 'article-detail' post.pk %}"><img src="{{ post.header_image.url }}" alt="" class="img-fluid"></a>
 		                {% endif %}
-		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }}</span></div>
 		                <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 		                <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 		              </div>
@@ -68,7 +68,7 @@
 		            {% if one_posts2 %}
 									{% for post in one_posts2 %}
 		              <div class="post-entry-1">
-		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+		                <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 		                <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 		                <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 		              </div>
@@ -87,7 +87,7 @@
 			                <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			                {% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                  <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 	                  <p class="mb-4 d-block">{{ post.snippet }}</p>
@@ -103,7 +103,7 @@
           	{% if five_posts %}
 							{% for post in five_posts %}
 	            <div class="post-entry-1 border-bottom">
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 	            </div>
@@ -145,7 +145,7 @@
 			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            {% endif %}
 	              </a>
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <p class="mb-4 d-block">{{ post.snippet }}</p>
 
@@ -162,7 +162,7 @@
             {% if single_posts7 %}
 							{% for post in single_posts7 %}
 	            <div class="post-entry-1 border-bottom">
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 	            </div>
@@ -183,7 +183,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago </span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -200,7 +200,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -218,7 +218,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -262,7 +262,7 @@
 			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            {% endif %}
 	              </a>
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              
 	              <div class="d-flex align-items-center author">
@@ -278,7 +278,7 @@
             {% if single_posts12 %}
 							{% for post in single_posts12 %}
 	            <div class="post-entry-1 border-bottom">
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 	            </div>
@@ -299,7 +299,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -316,7 +316,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -334,7 +334,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -378,7 +378,7 @@
 			              <img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            {% endif %}
 	              </a>
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <p class="mb-4 d-block">{{ post.snippet }}</p>
 
@@ -395,7 +395,7 @@
             {% if single_posts17 %}
 							{% for post in single_posts17 %}
 	            <div class="post-entry-1 border-bottom">
-	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	              <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	              <h2 class="mb-2"><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	              <span class="author mb-3 d-block">{{ post.author.first_name }}</span>
 	            </div>
@@ -416,7 +416,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -433,7 +433,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -451,7 +451,7 @@
 			              		<img src="{{ post.header_image.url }}" alt="" class="img-fluid">
 			            		{% endif %}
 	                  </a>
-	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date }}</span></div>
+	                  <div class="post-meta"><span class="date"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span> <span class="mx-1">&bullet;</span> <span>{{ post.post_date|timesince }} ago</span></div>
 	                  <h2><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h2>
 	                </div>
                 	{% endfor %}
@@ -526,7 +526,7 @@
 	      <a href="{% url 'show_profile_page' post.author.profile.id %}">
 	      	{{ post.author.first_name }}
 					{{ post.author.last_name }}
-				</a> - {{ post.post_date }}
+				</a> - {{ post.post_date|timesince }} ago
 
 				<small>
 					{% if user.is_authenticated %}
