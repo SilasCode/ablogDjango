@@ -36,11 +36,11 @@ class HomeView(ListView):
 		two_posts1 = Post.objects.all().order_by('-post_date')[3:5]
 		five_posts = Post.objects.all().order_by('-post_date')[5:10]
 
-		single_posts5 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[:1]
-		single_posts7 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[1:2]
-		single_posts8 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[2:3]
-		single_posts9 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[3:4]
-		single_posts10 = Post.objects.filter(category= 'Politics').all().order_by('-post_date')[4:5]
+		single_posts5 = Post.objects.filter(category= 'Tech').all().order_by('-post_date')[:1]
+		single_posts7 = Post.objects.filter(category= 'Tech').all().order_by('-post_date')[1:2]
+		single_posts8 = Post.objects.filter(category= 'Tech').all().order_by('-post_date')[2:3]
+		single_posts9 = Post.objects.filter(category= 'Tech').all().order_by('-post_date')[3:4]
+		single_posts10 = Post.objects.filter(category= 'Tech').all().order_by('-post_date')[4:5]
 
 		single_posts11 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[0:1]
 		single_posts12 = Post.objects.filter(category= 'Africa News').all().order_by('-post_date')[1:2]
